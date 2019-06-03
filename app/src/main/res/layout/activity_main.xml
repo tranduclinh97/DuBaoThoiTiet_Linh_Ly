@@ -165,7 +165,8 @@
         android:id="@+id/buttonChangeActivity"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:layout_height="wrap_content"
+
         />
 </LinearLayout>

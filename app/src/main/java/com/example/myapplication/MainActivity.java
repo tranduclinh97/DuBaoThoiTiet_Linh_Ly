@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,20 +32,43 @@ public class MainActivity extends AppCompatActivity {
     Button btnSearch, btnChangeActivity;
     TextView txtName, txtCountry, txtTemp, txtStatus, txtHumidity, txtCloud, txtWind, txtDay;
     ImageView imgIcon;
+    String city = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         AnhSangCuaDang();
+        //Location default
+        GetCurrentWeatherData("Saigon");
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String location = editSearch.getText().toString();
+                if(location.equals("")){
+                    city = "Saigon";
+                    GetCurrentWeatherData(city);
+                }
+                else {
+                    city= location;
+                    GetCurrentWeatherData(city);
+                }
                 GetCurrentWeatherData(location);
             }
         });
+        // Display 2
+        btnChangeActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Giu mang hinh va dua qua mang hinh thu 2
+                String location = editSearch.getText().toString();
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                intent.putExtra("name", location);
+                startActivity(intent);
+            }
+        });
     }
+
 
     public void GetCurrentWeatherData(String data) {
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
