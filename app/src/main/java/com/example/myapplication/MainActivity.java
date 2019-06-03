@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject jsonOjectMain = jsonObject.getJSONObject("main");
                             String nhietdo = jsonOjectMain.getString("temp");
                             String doam = jsonOjectMain.getString("humidity");
+
                             Double aa = Double.valueOf(nhietdo);
                             String NHIETDO = String.valueOf(aa.intValue());
 
